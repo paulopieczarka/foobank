@@ -1,0 +1,145 @@
+@import url('https://fonts.googleapis.com/css?family=Lora|Roboto|Material+Icons');
+
+.app {
+    flex: 1;
+    background: #fafafa;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Roboto', sans-serif;
+    user-select: none;
+}
+
+header {
+    height: calc(56px - 32px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
+    color: white;
+    background: lightseagreen;
+    /* border-bottom: 1px solid rgba(0,0,0,.1); */
+    box-shadow: 0 2px 4px rgba(0,0,0,.1);
+}
+
+header i.material-icons {
+    font-size: 24px;
+}
+
+header .logo {
+    font-family: 'Lora', serif;
+    font-size: 26px;
+    font-weight: bold;
+    transform: translateX(-40px);
+    transition: ease-in-out .4s;
+}
+
+header.header-login {
+    background: none;
+    color: rgba(0,0,0,.6);
+    box-shadow: none;
+}
+
+header .header-left {
+    display: flex;
+}
+
+header .header-back {
+    display: flex;
+    align-items: center;
+    margin-right: 16px;
+    transform: translateX(-150%);
+    transition: ease-in-out .4s;
+}
+
+header .header-left.is-active .logo {
+    font-size: 18px;
+    transform: translateX(0);
+}
+
+header .header-left.is-active .header-back {
+    transform: translateX(0);
+}
+
+.page {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    overflow: hidden;
+    overflow-y: auto;
+}
+
+.timeline {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.timeline-title {
+    flex-shrink: 0;
+    padding: 8px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.timeline-title span {
+    border-top: 3px solid rgba(0,0,0,.2); 
+    margin-top: 4px;
+    padding: 8px;
+    color: rgba(0,0,0,.6);
+    font-size: 14px;
+}
+
+.front-money {
+    margin-bottom: 32px;
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    color: lightseagreen;
+}
+
+.footer-menu {
+    height: calc(60px + 1vh);
+    padding: 0 16px;
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    background: white;
+    border-top: 1px solid rgba(0,0,0,.1);
+}
+
+.footer-menu div {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: rgba(0,0,0,.6);
+    cursor: pointer;
+    font-family: 'Roboto', sans-serif;
+}
+
+.footer-menu div i.material-icons {
+    font-size: 24px;
+    margin-bottom: 6px;
+    color: lightseagreen;
+    opacity: .8;
+}
+
+.button {
+    height: calc(46px + 1vh);
+    background: lightseagreen;
+    border-radius: 2px;
+    border: none;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    color: white;
+}

@@ -1,0 +1,28 @@
+{
+  "name": "foobank-api",
+  "version": "1.0.0",
+  "description": "NodeJS rocks.",
+  "main": "src/index.js",
+  "author": "Paulo Pieczarka",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.4",
+    "express": "^4.16.2",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "rethinkdb": "^2.3.3"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-jest": "^21.2.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "jest": "^21.2.1",
+    "react-test-renderer": "^16.2.0",
+    "supertest": "^3.0.0"
+  },
+  "scripts": {
+    "test": "jest"
+  }
+}
