@@ -16,7 +16,11 @@ class Login extends Component
     render()
     {
         return <div className="page">
-            <Header onlyTitle />
+            <Header 
+                onlyTitle 
+                location={this.props.location} 
+                history={this.props.history} 
+            />
         
             <Title 
                 text="Oi, lindo!" 

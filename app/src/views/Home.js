@@ -5,10 +5,18 @@ import Timeline from "./Timeline";
 
 class Home extends Component
 {
+    componentDidMount() {
+        console.log(this.props);
+    }
+
     render()
     {
         return <div className="page">
-            <Header />
+            <Header 
+                onlyTitle 
+                location={this.props.location} 
+                history={this.props.history} 
+            />
 
             <main>
                 <Timeline />

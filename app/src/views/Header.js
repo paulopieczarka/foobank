@@ -14,14 +14,17 @@ class Header extends Component
         this.onBackButtonClick = this.onBackButtonClick.bind(this);
     }
 
-    componentDidMount() {
+    componentDidMount() 
+    {
+        const { location } = this.props;
+
         setTimeout(() => {
-        this.setState({ hasBackButton: (window.location.pathname !== "/" && window.location.pathname !== "/login") });
+            this.setState({ hasBackButton: (location.pathname !== "/" && location.pathname !== "/login") });
         }, 1);
     }
 
     onBackButtonClick() {
-        window.history.back();
+        this.props.history.goBack();
     }
 
     render()

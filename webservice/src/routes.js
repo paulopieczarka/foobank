@@ -7,8 +7,8 @@ function initializeRoutes(app)
         return;
     }
 
-    app.use("/register", Register);
-    app.use("/login", Login);
+    app.use("/api/register", Register);
+    app.use("/api/login", Login);
 }
 
 module.exports = initializeRoutes;
