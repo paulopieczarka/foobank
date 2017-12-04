@@ -1,9 +1,12 @@
 const passport = require("passport");
-const LocalStrategy = require('passport-local').Strategy;
+const LocalStrategy = require('passport-json').Strategy;
 const User = require("../models/User");
 
 passport.use(new LocalStrategy((username, password, done) => {
+    console.log(username, password);
     User.findOne({ email: username }, (err, user) => {
+
+       console.log(user);
         if(err) {
             return done(err);
         }
@@ -17,6 +20,7 @@ passport.use(new LocalStrategy((username, password, done) => {
             return done(null, false, { message: "Senha inválida." });
         }
 
+        console.log(user);
         return done(null, user);
     });
 }));

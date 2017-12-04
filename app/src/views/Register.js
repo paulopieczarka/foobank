@@ -3,6 +3,7 @@ import { Form, Input, Button, Message, Checkbox, Loading } from "element-react";
 
 import { Title } from "../components/AphroditeUI";
 import Header from "./Header";
+import Fetch from "../helpers/Fetch";
 
 class Register extends Component
 {
@@ -29,12 +30,7 @@ class Register extends Component
         event.preventDefault();
         this.setState({ isSubmitting: true });
 
-        fetch("http://192.168.1.102:8000/api/register", {
-            method: "POST",
-            mode: "cors",
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(this.state.form)
-        })
+        Fetch.post("/register", this.state.form)
         .then(response => response.json())
         .then(result => {
             this.setState({ isSubmitting: false });
