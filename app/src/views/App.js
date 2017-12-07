@@ -10,26 +10,26 @@ import "../styles/ElementAphroditeTheme.css";
 
 import "../styles/App.css";
 
+const Auth =
+{
+    isAuthenticated: sessionStorage.getItem("bank"),
+    async authenticated()
+    {
+        await (this.isAuthenticated = false);
+    }
+}
+
 class App extends Component
 {
     render()
     {
         return <Router>
             <div className="app">
-                <Route path="/login" component={Login} />
+                <Route path="/login" component={Login} auth={Auth} />
                 <Route path="/register" component={Register} />
                 <PrivateRoute path="/" component={Home} />
             </div>
         </Router>;
-    }
-}
-
-const Auth =
-{
-    isAuthenticated: false,
-    async authenticated()
-    {
-        await (this.isAuthenticated = false);
     }
 }
 

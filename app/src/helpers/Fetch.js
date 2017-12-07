@@ -20,6 +20,17 @@ const Fetch =
             .then(response => resolve(response))
             .catch(err => reject(err));
         });
+    },
+
+    get(service)
+    {
+        return new Promise((resolve, reject) => {
+            fetch(`${WS_URL}${service}`, {
+                ...BASIC_CONFIG
+            })
+            .then(response => resolve(response))
+            .catch(err => reject(err));
+        });
     }
 }
 

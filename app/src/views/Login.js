@@ -41,7 +41,7 @@ class Login extends Component
             }
 
             // Zero protection, no regrets.
-            window.sessionStorage.setItem("bank", result.result);
+            window.sessionStorage.setItem("bank", JSON.stringify(result.result));
 
             Message.success("Login realizado!");
             window.history.back();
