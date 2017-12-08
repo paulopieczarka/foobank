@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Loading, Button, Card, Input } from "element-react";
+import { Loading, Button, Card, Input, Message } from "element-react";
 
 import Fetch from "../helpers/Fetch";
 
@@ -19,7 +19,10 @@ class Pay extends Component
     {
         const user = JSON.parse(sessionStorage.getItem("bank"));
         const accounts = user.accounts.join(",");
-        console.log(accounts);
+        
+        let { checkoutForm } = this.state;
+        checkoutForm["buyer"] = user._id;
+        this.setState({ checkoutForm: checkoutForm });
 
         Fetch.get(`/account/${accounts}`)
         .then(response => response.json())
@@ -28,7 +31,16 @@ class Pay extends Component
     }
 
     checkout() {
-        
+        Fetch.post("/account/pay", this.state.checkoutForm)
+        .then(response => response.json())
+        .then(result => Message.success(result.message))
+        .catch(err => console.log(err));
+    }
+
+    onChange(value, name) {
+        let { checkoutForm } = this.state;
+        checkoutForm["id"] = name;
+        this.setState({ checkoutForm: checkoutForm });
     }
 
     render()
@@ -40,7 +52,7 @@ class Pay extends Component
             </Card>
 
             <Card header="Pagar Boleto" style={{ marginTop: 20 }}>
-                <Input placeholder="Código do boleto" onChange={val => (this.setState({ checkoutForm: { number: val } }))} /><br />
+                <Input placeholder="Código do boleto" onChange={val => this.onChange(this, val, "id")} /><br />
                 <Button type="primary" onClick={this.checkout.bind(this)}>Pagar</Button>
             </Card>
         </div>;

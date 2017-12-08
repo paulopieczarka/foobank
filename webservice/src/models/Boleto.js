@@ -9,6 +9,7 @@ const BoletoSchema = new Schema({
     updatedAt: { type: Date, default: Date.now },
     amount: Number,
     paidAt: { type: Date, default: null },
+    status: { type: String, default: "não pago" }
 });
 
 BoletoSchema.method("update", function (updates, callback) {

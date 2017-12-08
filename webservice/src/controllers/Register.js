@@ -13,6 +13,7 @@ router.post("/", (req, res) => {
     
     const account = new Account();
     account.owner = user;
+    account.save();
 
     user.accounts = [account];
     user.save(err => {

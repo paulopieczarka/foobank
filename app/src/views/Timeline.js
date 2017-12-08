@@ -1,50 +1,44 @@
 import React, { Component } from "react";
 import { Card } from "../components/AphroditeUI";
-
-const StaticTimelineContent = [
-    { 
-        icon: "check_circle", 
-        text: "Você enviou 5.876 tops para Adriano.", 
-        labels: [new Date(), "Transferência"] 
-    }, { 
-        icon: "receipt", 
-        text: "Você recebeu 56 tops de Alexandre.", 
-        labels: [new Date(), "Transferência"] 
-    }, { 
-        icon: "payment", 
-        text: "Você pagou boleto de 56.432 tops de FooGift.", 
-        labels: [new Date(), "Pagamento"] 
-    }, { 
-        icon: "error", 
-        text: "Você enviou 5.876 tops para Adriano.", 
-        labels: [new Date(), "Transferência"] 
-    }, { 
-        icon: "block", 
-        text: "Você enviou 5.876 tops para Adriano.", 
-        labels: [new Date(), "Transferência"] 
-    }, { 
-        icon: "error", 
-        text: "Você enviou 5.876 tops para Adriano.", 
-        labels: [new Date(), "Transferência"] 
-    }, { 
-        icon: "error", 
-        text: "Você enviou 5.876 tops para Adriano.", 
-        labels: [new Date(), "Transferência"] 
-    }
-];
+import Fetch from "../helpers/Fetch";
 
 class Timeline extends Component
 {
+    constructor(props)
+    {
+        super(props);
+
+        this.state = {
+            balance: 0,
+            activities: []
+        };
+    }
+
+    componentDidMount()
+    {
+        const session = JSON.parse(sessionStorage.getItem("bank"));
+        Fetch.get(`/account/home/${session._id}`)
+        .then(response => response.json())
+        .then(result => {
+            console.log(result);
+            this.setState({
+                balance: result.user.accounts[0].balance,
+                activities: result.activities
+            });
+        })
+        .catch(err => console.log(err));
+    }
+
     render()
     {
         return <div className="timeline">
-            <Card title="Você possui 25.486 tops." />
+            <Card title={`Você possui ${this.state.balance} tops.`} />
             <TimelineTitle title="Atividades" color="orange" />
-            {StaticTimelineContent.map((tlc, key) => <Card
+            {this.state.activities.map((tlc, key) => <Card
                 key={key} 
                 icon={tlc.icon} 
                 labels={tlc.labels}
-                text={tlc.text}
+                text={tlc.message}
             />)}
         </div>;
     }
